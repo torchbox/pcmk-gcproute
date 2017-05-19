@@ -44,6 +44,24 @@ beforehand.
 The route will be added using the instance's service account credentials;
 therefore, the service account must have the compute.networkAdmin role.
 
+## Requirements
+
+* `curl` must be installed on the host to access the instance metadata;
+* `gcloud` (from the Google Cloud SDK) must be installed and configured.  This
+  should be done by default on GCE instances.
+
+## Configuration
+
+The following parameters are accepted:
+
+* `name`: (required) name of the route that will be created
+* `network`: (required) name of the GCP network the route will be created in
+* `prefix`: (required) the network (or IP address) that will be routed
+* `prefix_length`: (required) prefix length of the route to create; use `32` for
+  a single address.  For a default route (e.g. to create a NAT router), set
+  `prefix=0.0.0.0 prefix_length=0`.
+* `gcloud_bin`:	(optional) path to the `gcloud` binary if it's not in `$PATH`
+
 ## License
 
 Copyright (c) 2017 Torchbox Ltd.
