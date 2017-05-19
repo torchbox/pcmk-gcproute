@@ -24,7 +24,7 @@ primitive my-ip-addr IPaddr2            \
                 nic=lo                  \
         op monitor interval=10s
 
-primitive pg-ip-route ocf:tbx:gcproute          \
+primitive my-ip-route ocf:tbx:gcproute          \
         params  name=postgres-3                 \
                 network=itl                     \
                 prefix=172.31.248.1             \
@@ -34,7 +34,7 @@ primitive pg-ip-route ocf:tbx:gcproute          \
         op stop timeout=30s interval=0          \
         meta target-role=Started
 
-group my-ip pg-ip-addr pg-ip-route
+group my-ip my-ip-addr my-ip-route
 ```
 
 The virtual IP address should be outside the GCP network, to avoid conflicts.
